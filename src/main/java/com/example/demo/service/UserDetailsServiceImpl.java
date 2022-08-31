@@ -21,6 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public Integer idUser;
 	private Integer teste;
 	
+	
 	public UserDetailsServiceImpl() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -44,6 +45,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		Optional<Pessoa> user = repository.findByEmail(email);
 		setIdUser(user.get().getId());
+		
 		if(user.isPresent()) {
 			return new UseSS(user.get().getId(), user.get().getEmail(), user.get().getSenha(), user.get().getPerfis());
 		}

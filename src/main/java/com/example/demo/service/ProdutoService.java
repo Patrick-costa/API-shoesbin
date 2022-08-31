@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Produto;
@@ -28,11 +29,13 @@ public class ProdutoService {
 		return produtoRepository.findAll();
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public Produto create(ProdutoDTO objDTO) {
 		Produto newObj = new Produto(objDTO);
 		return produtoRepository.save(newObj);
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public Produto update(Integer id, @Valid ProdutoDTO objDTO) {
 			objDTO.setId(id);
 			Produto oldObj = findById(id);

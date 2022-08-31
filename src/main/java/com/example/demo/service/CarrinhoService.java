@@ -36,9 +36,6 @@ public class CarrinhoService {
 	public Carrinho create(CarrinhoDTO objDTO) {
 		Carrinho newObj = new Carrinho(objDTO);
 		newObj.setClienteId(userDet.getIdUser());
-		System.out.println("###################################################");
-		System.out.println(newObj.getClienteId());
-		System.out.println("###################################################");
 		return carrinhoRepository.save(newObj);
 	}
 	
