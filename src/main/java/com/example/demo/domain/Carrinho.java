@@ -45,7 +45,6 @@ public class Carrinho implements Serializable{
 	public Carrinho(Integer id, Integer clienteId, List<Produto> produto, Boolean status) {
 		super();
 		this.id = id;
-		this.clienteId = clienteId;
 		this.produto = produto;
 		this.status = status;
 	}

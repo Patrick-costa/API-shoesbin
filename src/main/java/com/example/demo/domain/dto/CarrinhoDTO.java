@@ -6,8 +6,10 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
+
 import com.example.demo.domain.Carrinho;
 import com.example.demo.domain.Produto;
+
 
 public class CarrinhoDTO implements Serializable {
 

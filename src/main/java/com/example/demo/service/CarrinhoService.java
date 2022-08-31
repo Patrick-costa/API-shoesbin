@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -19,6 +20,8 @@ public class CarrinhoService {
 	@Autowired
 	private CarrinhoRepository carrinhoRepository;
 	
+	@Autowired
+	private UserDetailsServiceImpl userDet;
 	
 	public Carrinho findById(Integer id) {
 		Optional<Carrinho> obj = carrinhoRepository.findById(id);
@@ -26,11 +29,16 @@ public class CarrinhoService {
 	}
 	
 	public List<Carrinho> findAll(){
-		return carrinhoRepository.findAll();
+		List<Carrinho> carrinho = carrinhoRepository.findAll();
+		return carrinho.stream().filter((x) -> x.getClienteId().equals(userDet.getIdUser())).collect(Collectors.toList());
 	}
 	
 	public Carrinho create(CarrinhoDTO objDTO) {
 		Carrinho newObj = new Carrinho(objDTO);
+		newObj.setClienteId(userDet.getIdUser());
+		System.out.println("###################################################");
+		System.out.println(newObj.getClienteId());
+		System.out.println("###################################################");
 		return carrinhoRepository.save(newObj);
 	}
 	
