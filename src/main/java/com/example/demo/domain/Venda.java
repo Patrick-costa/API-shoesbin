@@ -1,6 +1,8 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 import com.example.demo.domain.dto.VendaDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Venda implements Serializable{
@@ -28,6 +31,12 @@ public class Venda implements Serializable{
 	@ElementCollection(fetch = FetchType.EAGER)
 	@OneToOne
 	protected Carrinho carrinho;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDateTime data = LocalDateTime.now();
+	
+	@JsonFormat(pattern = "HH:mm:ss")
+	private LocalDateTime hora = LocalDateTime.now();
 	
 	public Venda() {
 		super();

@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import com.example.demo.domain.dto.PessoaDTO;
 import com.example.demo.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Pessoa implements Serializable {
@@ -38,6 +40,9 @@ public class Pessoa implements Serializable {
 	protected String email;
 	
 	protected String senha;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data = LocalDate.now();
 	
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(name = "PERFIS")

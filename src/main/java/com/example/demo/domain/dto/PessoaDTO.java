@@ -1,6 +1,7 @@
 package com.example.demo.domain.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import com.example.demo.domain.Pessoa;
 import com.example.demo.enums.Perfil;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class PessoaDTO implements Serializable {
 	
@@ -24,6 +26,8 @@ public class PessoaDTO implements Serializable {
 	protected String email;
 	@NotNull(message = "O Campo SENHA é requerido")
 	protected String senha;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data = LocalDate.now();
 	
 	protected Set<Integer> perfis = new HashSet<>();
 

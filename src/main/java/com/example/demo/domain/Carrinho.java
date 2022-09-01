@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
 import com.example.demo.domain.dto.CarrinhoDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Carrinho implements Serializable{
@@ -26,6 +28,9 @@ public class Carrinho implements Serializable{
 	@JoinColumn(name="produto_id")
 	@ManyToMany
 	private List<Produto> produto = new ArrayList<>();
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data = LocalDate.now();
 	
 	private Boolean status;
 	

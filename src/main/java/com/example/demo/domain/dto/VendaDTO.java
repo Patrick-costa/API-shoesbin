@@ -1,11 +1,14 @@
 package com.example.demo.domain.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotNull;
 
 import com.example.demo.domain.Carrinho;
 import com.example.demo.domain.Venda;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class VendaDTO implements Serializable{
 	
@@ -19,6 +22,12 @@ public class VendaDTO implements Serializable{
 	@NotNull(message = "O Campo CARRINHO é requerido")
 	protected Carrinho carrinho;
 
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data = LocalDate.now();
+	
+	@JsonFormat(pattern = "HH:mm:ss")
+	private LocalDateTime hora = LocalDateTime.now();
+	
 	public VendaDTO() {
 		super();
 		// TODO Auto-generated constructor stub

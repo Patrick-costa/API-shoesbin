@@ -1,10 +1,12 @@
 package com.example.demo.domain.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotNull;
 
 import com.example.demo.domain.Produto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ProdutoDTO implements Serializable{
 	
@@ -26,6 +28,9 @@ public class ProdutoDTO implements Serializable{
 	@NotNull(message = "O Campo QUANTIDADE é requerido")
 	protected Integer quantidade;
 
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data = LocalDate.now();
+	
 	public ProdutoDTO() {
 		super();
 		// TODO Auto-generated constructor stub

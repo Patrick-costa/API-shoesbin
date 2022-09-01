@@ -1,6 +1,7 @@
 package com.example.demo.domain.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 
 import com.example.demo.domain.Carrinho;
 import com.example.demo.domain.Produto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 public class CarrinhoDTO implements Serializable {
@@ -23,6 +25,9 @@ public class CarrinhoDTO implements Serializable {
 	private List<Produto> produto = new ArrayList<>();
 	
 	private Boolean status;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data = LocalDate.now();
 
 	public CarrinhoDTO() {
 		super();

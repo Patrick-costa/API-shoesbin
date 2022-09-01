@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.example.demo.domain.dto.ProdutoDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Produto implements Serializable{
@@ -25,6 +27,9 @@ public class Produto implements Serializable{
 	protected String imagem;
 	protected Boolean status;
 	protected Integer quantidade;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data = LocalDate.now();
 	
 	public Integer getQuantidade() {
 		return quantidade;
