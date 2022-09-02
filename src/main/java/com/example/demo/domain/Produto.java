@@ -23,6 +23,7 @@ public class Produto implements Serializable{
 	protected String titulo;
 	protected String marca;
 	protected String tamanho;
+	protected Float preco;
 	protected String descricao;
 	protected String imagem;
 	protected Boolean status;
@@ -54,12 +55,13 @@ public class Produto implements Serializable{
 		this.imagem = obj.getImagem();
 		this.status = obj.getStatus();
 		this.quantidade = obj.getQuantidade();
+		this.preco = obj.getPreco();
 	}
 
 	
 	
 	public Produto(Integer id, String titulo, String marca, String tamanho, String descricao, String imagem,
-			Boolean status, Integer quantidade) {
+			Boolean status, Integer quantidade, Float preco) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -69,6 +71,7 @@ public class Produto implements Serializable{
 		this.imagem = imagem;
 		this.status = status;
 		this.quantidade = quantidade;
+		this.preco = preco;
 	}
 
 	public String getMarca() {
@@ -125,6 +128,14 @@ public class Produto implements Serializable{
 
 	public void setTamanho(String tamanho) {
 		this.tamanho = tamanho;
+	}
+	
+	public Float getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Float preco) {
+		this.preco = preco;
 	}
 	
 	

@@ -22,6 +22,8 @@ public class ProdutoDTO implements Serializable{
 	@NotNull(message = "O Campo MARCA é requerido")
 	protected String marca;
 	@NotNull(message = "O Campo IMAGEM é requerido")
+	@NotNull(message = "O Campo PRECO é requerido")
+	protected Float preco;
 	protected String imagem;
 	
 	protected Boolean status;
@@ -46,6 +48,7 @@ public class ProdutoDTO implements Serializable{
 		this.imagem = obj.getImagem();
 		this.status = obj.getStatus();
 		this.quantidade = obj.getQuantidade();
+		this.preco = obj.getPreco();
 	}
 
 	public Integer getId() {
@@ -111,6 +114,16 @@ public class ProdutoDTO implements Serializable{
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
+
+	public Float getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Float preco) {
+		this.preco = preco;
+	}
+	
+	
 	
 	
 

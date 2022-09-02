@@ -25,9 +25,6 @@ public class CarrinhoDTO implements Serializable {
 	private List<Produto> produto = new ArrayList<>();
 	
 	private Boolean status;
-	
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate data = LocalDate.now();
 
 	public CarrinhoDTO() {
 		super();

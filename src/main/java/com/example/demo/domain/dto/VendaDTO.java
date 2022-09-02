@@ -15,7 +15,6 @@ public class VendaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	protected Integer id;
-	@NotNull(message = "O Campo VALOR é requerido")
 	protected Float valor;
 	
 	protected Integer clienteId;

@@ -29,9 +29,6 @@ public class Carrinho implements Serializable{
 	@ManyToMany
 	private List<Produto> produto = new ArrayList<>();
 	
-	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDate data = LocalDate.now();
-	
 	private Boolean status;
 	
 	public Carrinho() {

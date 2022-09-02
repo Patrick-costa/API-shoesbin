@@ -45,7 +45,6 @@ public class CarrinhoResource {
 	
 	@PostMapping
 	public ResponseEntity<CarrinhoDTO> create(@Valid @RequestBody CarrinhoDTO objDTO){
-		objDTO.setClienteId(null);
 		Carrinho newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();

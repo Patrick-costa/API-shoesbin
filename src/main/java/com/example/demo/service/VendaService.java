@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.domain.Venda;
+import com.example.demo.domain.dto.ProdutoDTO;
 import com.example.demo.domain.dto.VendaDTO;
 import com.example.demo.repository.VendaRepository;
 import com.example.demo.service.exceptions.ObjectnotFoundException;
@@ -20,6 +20,8 @@ public class VendaService {
 	
 	@Autowired
 	private UserDetailsServiceImpl userDet;
+	
+	private Float total = (float) 0.0;
 	
 	public Venda findById(Integer id) {
 		Optional<Venda> obj = vendaRepository.findById(id);
@@ -34,6 +36,11 @@ public class VendaService {
 	public Venda create(VendaDTO objDTO) {
 		Venda newObj = new Venda(objDTO);
 		newObj.setClienteId(userDet.getIdUser());
+		List<ProdutoDTO> list = objDTO.getCarrinho().getProduto().stream().map((x) -> new ProdutoDTO(x)).collect(Collectors.toList());
+		for(ProdutoDTO item : list) {
+			this.total += item.getPreco().floatValue(); 
+		}
+		newObj.setValor(this.total);
 		return vendaRepository.save(newObj);
 	}
 	
