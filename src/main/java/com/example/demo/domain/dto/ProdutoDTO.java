@@ -45,7 +45,7 @@ public class ProdutoDTO implements Serializable{
 		this.tamanho = obj.getTamanho();
 		this.descricao = obj.getDescricao();
 		this.marca = obj.getMarca();
-		this.imagem = obj.getImagem();
+		this.imagem = "https://shoesbin.s3.sa-east-1.amazonaws.com/" + System.currentTimeMillis() + "_" + obj.getImagem();
 		this.status = obj.getStatus();
 		this.quantidade = obj.getQuantidade();
 		this.preco = obj.getPreco();
