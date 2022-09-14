@@ -1,7 +1,6 @@
 package com.example.demo.domain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -12,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
 import com.example.demo.domain.dto.CarrinhoDTO;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Carrinho implements Serializable{

@@ -28,6 +28,7 @@ public class Produto implements Serializable{
 	protected String imagem;
 	protected Boolean status;
 	protected Integer quantidade;
+	protected String cor;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data = LocalDate.now();
@@ -52,26 +53,28 @@ public class Produto implements Serializable{
 		this.tamanho = obj.getTamanho();
 		this.descricao = obj.getDescricao();
 		this.marca = obj.getMarca();
-		this.imagem = obj.getImagem();
+		this.imagem = "https://shoesbin.s3.sa-east-1.amazonaws.com/" + obj.getImagem();
 		this.status = obj.getStatus();
 		this.quantidade = obj.getQuantidade();
 		this.preco = obj.getPreco();
+		this.cor = obj.getCor();
 	}
 
 	
 	
 	public Produto(Integer id, String titulo, String marca, String tamanho, String descricao, String imagem,
-			Boolean status, Integer quantidade, Float preco) {
+			Boolean status, Integer quantidade, Float preco, String cor) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.marca = marca;
 		this.tamanho = tamanho;
 		this.descricao = descricao;
-		this.imagem = imagem;
+		this.imagem = "https://shoesbin.s3.sa-east-1.amazonaws.com/" + imagem;
 		this.status = status;
 		this.quantidade = quantidade;
 		this.preco = preco;
+		this.cor = cor;
 	}
 
 	public String getMarca() {
@@ -137,6 +140,16 @@ public class Produto implements Serializable{
 	public void setPreco(Float preco) {
 		this.preco = preco;
 	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+	
+	
 	
 	
 }

@@ -2,12 +2,15 @@ package com.example.demo.domain.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
+import com.example.demo.domain.Endereco;
 import com.example.demo.domain.Pessoa;
 import com.example.demo.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -29,6 +32,8 @@ public class PessoaDTO implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data = LocalDate.now();
 	
+	protected List<Endereco> endereco = new ArrayList<>();
+	
 	protected Set<Integer> perfis = new HashSet<>();
 
 	public PessoaDTO() {
@@ -45,6 +50,7 @@ public class PessoaDTO implements Serializable {
 		this.email = obj.getEmail();
 		this.senha = obj.getSenha();
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.endereco = obj.getEndereco();
 	}
 
 	public Integer getId() {
@@ -94,6 +100,16 @@ public class PessoaDTO implements Serializable {
 	public void addPerfil(Perfil perfil) {
 		this.perfis.add(perfil.getCodigo());
 	}
+
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
+	}
+	
+	
 	
 	
 }

@@ -21,7 +21,7 @@ public class DBService {
 	private BCryptPasswordEncoder encoder;
 	
 	public void instanciaDB() {
-		Pessoa obj = new Pessoa(null,"Patrick","10297397737","patrick@gmail.com",encoder.encode("1234"));
+		Pessoa obj = new Pessoa(null,"Patrick","10297397737","patrick@gmail.com",encoder.encode("1234") );
 		obj.addPerfil(Perfil.ADMIN);
 		
 		pessoaRepository.saveAll(Arrays.asList(obj));

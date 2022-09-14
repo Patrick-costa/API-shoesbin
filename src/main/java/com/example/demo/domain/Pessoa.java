@@ -2,10 +2,13 @@ package com.example.demo.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -14,6 +17,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -48,6 +52,9 @@ public class Pessoa implements Serializable {
 	@CollectionTable(name = "PERFIS")
 	protected Set<Integer> perfis = new HashSet<>();
 	
+	@OneToMany(cascade=CascadeType.ALL)
+	protected List<Endereco> endereco = new ArrayList<>();
+	
 	public Pessoa() {
 		super();
 	}
@@ -61,6 +68,7 @@ public class Pessoa implements Serializable {
 		this.email = obj.getEmail();
 		this.senha = obj.getSenha();
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+		this.endereco = obj.getEndereco();
 	}
 	
 
@@ -120,6 +128,16 @@ public class Pessoa implements Serializable {
 	public void addPerfil(Perfil perfil) {
 		this.perfis.add(perfil.getCodigo());
 	}
+
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
+	}
+	
+	
 	
 	
 	

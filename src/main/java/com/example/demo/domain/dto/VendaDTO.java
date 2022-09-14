@@ -3,6 +3,8 @@ package com.example.demo.domain.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +17,7 @@ public class VendaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	protected Integer id;
-	protected Float valor;
+	protected Float valor = (float) 0.0;;
 	
 	protected Integer clienteId;
 	@NotNull(message = "O Campo CARRINHO é requerido")
@@ -35,7 +37,7 @@ public class VendaDTO implements Serializable{
 	public VendaDTO(Venda obj) {
 		super();
 		this.id = obj.getId();
-		this.valor = obj.getValor();
+		this.valor = calculaTotal(obj);
 		this.clienteId = obj.getClienteId();
 		this.carrinho = obj.getCarrinho();
 	}
@@ -72,6 +74,15 @@ public class VendaDTO implements Serializable{
 		this.carrinho = carrinho;
 	}
 	
+	float calculaTotal(Venda obj) {
+		List<ProdutoDTO> list = obj.getCarrinho().getProduto().stream().map((x) -> new ProdutoDTO(x)).collect(Collectors.toList());
+		
+		for(ProdutoDTO item : list) {
+			this.valor  += item.getPreco().floatValue(); 
+		}
+		
+		return this.valor;
+	}
 	
 
 }

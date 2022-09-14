@@ -29,7 +29,10 @@ public class ProdutoDTO implements Serializable{
 	protected Boolean status;
 	@NotNull(message = "O Campo QUANTIDADE é requerido")
 	protected Integer quantidade;
-
+	
+	@NotNull(message = "O Campo COR é requerido")
+	protected String cor;
+	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data = LocalDate.now();
 	
@@ -45,10 +48,11 @@ public class ProdutoDTO implements Serializable{
 		this.tamanho = obj.getTamanho();
 		this.descricao = obj.getDescricao();
 		this.marca = obj.getMarca();
-		this.imagem = "https://shoesbin.s3.sa-east-1.amazonaws.com/" + System.currentTimeMillis() + "_" + obj.getImagem();
+		this.imagem = obj.getImagem();
 		this.status = obj.getStatus();
 		this.quantidade = obj.getQuantidade();
 		this.preco = obj.getPreco();
+		this.cor = obj.getCor();
 	}
 
 	public Integer getId() {
@@ -122,6 +126,16 @@ public class ProdutoDTO implements Serializable{
 	public void setPreco(Float preco) {
 		this.preco = preco;
 	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+	
+	
 	
 	
 	
