@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import com.example.demo.domain.dto.ProdutoDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -19,7 +20,7 @@ public class Produto implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-	
+	private String categoria;
 	protected String titulo;
 	protected String marca;
 	protected String tamanho;
@@ -58,12 +59,13 @@ public class Produto implements Serializable{
 		this.quantidade = obj.getQuantidade();
 		this.preco = obj.getPreco();
 		this.cor = obj.getCor();
+		this.categoria = obj.getCategoria();
 	}
 
 	
 	
 	public Produto(Integer id, String titulo, String marca, String tamanho, String descricao, String imagem,
-			Boolean status, Integer quantidade, Float preco, String cor) {
+			Boolean status, Integer quantidade, Float preco, String cor, String categoria) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -75,6 +77,7 @@ public class Produto implements Serializable{
 		this.quantidade = quantidade;
 		this.preco = preco;
 		this.cor = cor;
+		this.categoria = categoria;
 	}
 
 	public String getMarca() {
@@ -148,6 +151,16 @@ public class Produto implements Serializable{
 	public void setCor(String cor) {
 		this.cor = cor;
 	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
+
+
 	
 	
 	

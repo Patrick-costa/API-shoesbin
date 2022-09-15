@@ -30,6 +30,9 @@ public class ProdutoDTO implements Serializable{
 	@NotNull(message = "O Campo QUANTIDADE é requerido")
 	protected Integer quantidade;
 	
+	@NotNull(message = "O Campo CATEGORIA é requerido")
+	protected String categoria;
+	
 	@NotNull(message = "O Campo COR é requerido")
 	protected String cor;
 	
@@ -53,6 +56,7 @@ public class ProdutoDTO implements Serializable{
 		this.quantidade = obj.getQuantidade();
 		this.preco = obj.getPreco();
 		this.cor = obj.getCor();
+		this.categoria = obj.getCategoria();
 	}
 
 	public Integer getId() {
@@ -133,6 +137,14 @@ public class ProdutoDTO implements Serializable{
 
 	public void setCor(String cor) {
 		this.cor = cor;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 	
 	
