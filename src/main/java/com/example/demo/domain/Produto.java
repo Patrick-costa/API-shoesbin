@@ -30,6 +30,7 @@ public class Produto implements Serializable{
 	protected Boolean status;
 	protected Integer quantidade;
 	protected String cor;
+	private String hex;
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data = LocalDate.now();
@@ -60,12 +61,13 @@ public class Produto implements Serializable{
 		this.preco = obj.getPreco();
 		this.cor = obj.getCor();
 		this.categoria = obj.getCategoria();
+		this.hex = obj.getHex();
 	}
 
 	
 	
 	public Produto(Integer id, String titulo, String marca, String tamanho, String descricao, String imagem,
-			Boolean status, Integer quantidade, Float preco, String cor, String categoria) {
+			Boolean status, Integer quantidade, Float preco, String cor, String categoria, String hex) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -78,6 +80,7 @@ public class Produto implements Serializable{
 		this.preco = preco;
 		this.cor = cor;
 		this.categoria = categoria;
+		this.hex = hex;
 	}
 
 	public String getMarca() {
@@ -160,7 +163,24 @@ public class Produto implements Serializable{
 		this.categoria = categoria;
 	}
 
+	public LocalDate getData() {
+		return data;
+	}
 
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+	public String getHex() {
+		return hex;
+	}
+
+	public void setHex(String hex) {
+		this.hex = hex;
+	}
+
+	
+	
 	
 	
 	

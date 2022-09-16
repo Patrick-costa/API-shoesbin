@@ -21,11 +21,12 @@ public class ProdutoDTO implements Serializable{
 	protected String descricao;
 	@NotNull(message = "O Campo MARCA é requerido")
 	protected String marca;
-	@NotNull(message = "O Campo IMAGEM é requerido")
 	@NotNull(message = "O Campo PRECO é requerido")
 	protected Float preco;
+	@NotNull(message = "O Campo IMAGEM é requerido")
 	protected String imagem;
-	
+	@NotNull(message = "O Campo HEX é requerido")
+	private String hex;
 	protected Boolean status;
 	@NotNull(message = "O Campo QUANTIDADE é requerido")
 	protected Integer quantidade;
@@ -49,6 +50,7 @@ public class ProdutoDTO implements Serializable{
 		this.id = obj.getId();
 		this.titulo = obj.getTitulo();
 		this.tamanho = obj.getTamanho();
+		this.data = obj.getData();
 		this.descricao = obj.getDescricao();
 		this.marca = obj.getMarca();
 		this.imagem = obj.getImagem();
@@ -146,6 +148,23 @@ public class ProdutoDTO implements Serializable{
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
+
+	public String getHex() {
+		return hex;
+	}
+
+	public void setHex(String hex) {
+		this.hex = hex;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+	
 	
 	
 	
