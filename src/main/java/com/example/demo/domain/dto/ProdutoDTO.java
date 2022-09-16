@@ -59,6 +59,7 @@ public class ProdutoDTO implements Serializable{
 		this.preco = obj.getPreco();
 		this.cor = obj.getCor();
 		this.categoria = obj.getCategoria();
+		this.hex = obj.getHex();
 	}
 
 	public Integer getId() {
