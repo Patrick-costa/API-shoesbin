@@ -45,8 +45,6 @@ public class Pessoa implements Serializable {
 	
 	protected String senha;
 	
-	private String imagemUrl = "";
-	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data = LocalDate.now();
 	

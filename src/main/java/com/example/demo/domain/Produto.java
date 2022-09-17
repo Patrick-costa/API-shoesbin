@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
 
 import com.example.demo.domain.dto.ProdutoDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
