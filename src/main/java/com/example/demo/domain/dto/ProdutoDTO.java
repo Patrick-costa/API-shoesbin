@@ -31,6 +31,9 @@ public class ProdutoDTO implements Serializable{
 	@NotNull(message = "O Campo QUANTIDADE é requerido")
 	protected Integer quantidade;
 	
+	@NotNull(message = "O Campo QuantidadeVendida é requerido")
+	private Integer quantidadeComprada;
+	
 	@NotNull(message = "O Campo CATEGORIA é requerido")
 	protected String categoria;
 	
@@ -60,6 +63,7 @@ public class ProdutoDTO implements Serializable{
 		this.cor = obj.getCor();
 		this.categoria = obj.getCategoria();
 		this.hex = obj.getHex();
+		this.quantidadeComprada = obj.getQuantidadeComprada();
 	}
 
 	public Integer getId() {
@@ -165,6 +169,16 @@ public class ProdutoDTO implements Serializable{
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
+
+	public Integer getQuantidadeComprada() {
+		return quantidadeComprada;
+	}
+
+	public void setQuantidadeComprada(Integer quantidadeComprada) {
+		this.quantidadeComprada = quantidadeComprada;
+	}
+
+	
 	
 	
 	

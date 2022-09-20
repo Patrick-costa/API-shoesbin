@@ -28,6 +28,7 @@ public class Produto implements Serializable{
 	protected String imagem;
 	protected Boolean status;
 	protected Integer quantidade;
+	private Integer quantidadeComprada;
 	protected String cor;
 	private String hex;
 	
@@ -61,12 +62,13 @@ public class Produto implements Serializable{
 		this.cor = obj.getCor();
 		this.categoria = obj.getCategoria();
 		this.hex = obj.getHex();
+		this.quantidadeComprada = obj.getQuantidadeComprada();
 	}
 
 	
 	
 	public Produto(Integer id, String titulo, String marca, String tamanho, String descricao, String imagem,
-			Boolean status, Integer quantidade, Float preco, String cor, String categoria, String hex) {
+			Boolean status, Integer quantidade, Float preco, String cor, String categoria, String hex, Integer quantidadeComprada) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -80,6 +82,7 @@ public class Produto implements Serializable{
 		this.cor = cor;
 		this.categoria = categoria;
 		this.hex = hex;
+		this.quantidadeComprada = quantidadeComprada;
 	}
 
 	public String getMarca() {
@@ -178,6 +181,15 @@ public class Produto implements Serializable{
 		this.hex = hex;
 	}
 
+	public Integer getQuantidadeComprada() {
+		return quantidadeComprada;
+	}
+
+	public void setQuantidadeComprada(Integer quantidadeComprada) {
+		this.quantidadeComprada = quantidadeComprada;
+	}
+
+	
 	
 	
 	
