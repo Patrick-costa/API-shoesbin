@@ -17,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.example.demo.domain.Pessoa;
 import com.example.demo.domain.dto.PessoaDTO;
 import com.example.demo.service.PessoaService;
+import com.example.demo.service.UserDetailsServiceImpl;
 
 @RestController
 @RequestMapping(value = "/usuarios")
@@ -25,6 +26,9 @@ public class PessoaResource {
 	
 	@Autowired
 	private PessoaService service;
+	
+	@Autowired
+	private UserDetailsServiceImpl userDet;
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<PessoaDTO> findById(@PathVariable Integer id){
@@ -36,6 +40,14 @@ public class PessoaResource {
 	public ResponseEntity<List<PessoaDTO>> findAll(){
 		List<Pessoa> list = service.findAll();
 		List<PessoaDTO> listDTO = list.stream().map(obj -> new PessoaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
+	}
+	
+	@GetMapping(value = "/meuUsuario")
+	public ResponseEntity<List<PessoaDTO>> findUser(){
+		List<Pessoa> list = service.findAll();
+		List<PessoaDTO> listDTO = list.stream().map(obj -> new PessoaDTO(obj)).collect(Collectors.toList());
+		listDTO = listDTO.stream().filter(obj -> obj.getId().equals(userDet.getIdUser())).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 	
