@@ -44,11 +44,10 @@ public class PessoaResource {
 	}
 	
 	@GetMapping(value = "/meuUsuario")
-	public ResponseEntity<List<PessoaDTO>> findUser(){
+	public ResponseEntity<PessoaDTO> findUser(){
 		List<Pessoa> list = service.findAll();
 		List<PessoaDTO> listDTO = list.stream().map(obj -> new PessoaDTO(obj)).collect(Collectors.toList());
-		listDTO = listDTO.stream().filter(obj -> obj.getId().equals(userDet.getIdUser())).collect(Collectors.toList());
-		return ResponseEntity.ok().body(listDTO);
+		return ResponseEntity.ok().body(resgatarUsuario(listDTO));
 	}
 	
 	@PostMapping
@@ -56,6 +55,15 @@ public class PessoaResource {
 		Pessoa newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{îd}").buildAndExpand(newObj.getId()).toUri(); 
 		return ResponseEntity.created(uri).build();
+	}
+	
+	public PessoaDTO resgatarUsuario(List<PessoaDTO> objDTO) {
+		List<PessoaDTO> listDTO = objDTO.stream().filter(obj -> obj.getId().equals(userDet.getIdUser())).collect(Collectors.toList());
+		PessoaDTO userDTO = null;
+		for(PessoaDTO item : listDTO) {
+			userDTO = item;
+		}
+		return userDTO;
 	}
 	
 }
