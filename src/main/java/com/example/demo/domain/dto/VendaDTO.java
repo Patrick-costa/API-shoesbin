@@ -3,12 +3,13 @@ package com.example.demo.domain.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
-import com.example.demo.domain.Carrinho;
+import com.example.demo.domain.Produto;
 import com.example.demo.domain.Venda;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -20,8 +21,8 @@ public class VendaDTO implements Serializable{
 	protected Float valor = (float) 0.0;;
 	
 	protected Integer clienteId;
-	@NotNull(message = "O Campo CARRINHO é requerido")
-	protected Carrinho carrinho;
+	@NotNull(message = "O Campo PRODUTO é requerido")
+	protected List<Produto> produto = new ArrayList<>();
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data = LocalDate.now();
@@ -39,7 +40,7 @@ public class VendaDTO implements Serializable{
 		this.id = obj.getId();
 		this.valor = calculaTotal(obj);
 		this.clienteId = obj.getClienteId();
-		this.carrinho = obj.getCarrinho();
+		this.produto = obj.getProduto();
 	}
 
 	public Integer getId() {
@@ -66,16 +67,17 @@ public class VendaDTO implements Serializable{
 		this.clienteId = clienteId;
 	}
 
-	public Carrinho getCarrinho() {
-		return carrinho;
+	
+	public List<Produto> getProduto() {
+		return produto;
 	}
 
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
-	
+
 	float calculaTotal(Venda obj) {
-		List<ProdutoDTO> list = obj.getCarrinho().getProduto().stream().map((x) -> new ProdutoDTO(x)).collect(Collectors.toList());
+		List<ProdutoDTO> list = obj.getProduto().stream().map((x) -> new ProdutoDTO(x)).collect(Collectors.toList());
 		
 		for(ProdutoDTO item : list) {
 			this.valor  += item.getPreco().floatValue(); 

@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.demo.domain.Produto;
 import com.example.demo.domain.Venda;
 import com.example.demo.domain.dto.ProdutoDTO;
 import com.example.demo.domain.dto.VendaDTO;
@@ -20,6 +22,9 @@ public class VendaService {
 	
 	@Autowired
 	private UserDetailsServiceImpl userDet;
+	
+	@Autowired
+	private ProdutoService produtoService;
 	
 	private Float total = (float) 0.0;
 	
@@ -36,12 +41,23 @@ public class VendaService {
 	public Venda create(VendaDTO objDTO) {
 		Venda newObj = new Venda(objDTO);
 		newObj.setClienteId(userDet.getIdUser());
-		List<ProdutoDTO> list = objDTO.getCarrinho().getProduto().stream().map((x) -> new ProdutoDTO(x)).collect(Collectors.toList());
+		List<ProdutoDTO> list = objDTO.getProduto().stream().map((x) -> new ProdutoDTO(x)).collect(Collectors.toList());
 		for(ProdutoDTO item : list) {
 			this.total += item.getPreco().floatValue(); 
 		}
 		newObj.setValor(this.total);
+		List<ProdutoDTO> produtoDTO = objDTO.getProduto().stream().map((x) -> new ProdutoDTO(x)).collect(Collectors.toList());
+		diminuirEstoque(produtoDTO);
 		return vendaRepository.save(newObj);
+	}
+	
+	public void diminuirEstoque(List<ProdutoDTO> objDTO) {
+		for(ProdutoDTO item : objDTO) {
+			Produto produto = produtoService.findById(item.getId());
+			Integer qtd = produto.getQuantidade() - item.getQuantidade();
+			item.setQuantidade(qtd);
+			produtoService.update(item.getId(), item);
+		}
 	}
 	
 	

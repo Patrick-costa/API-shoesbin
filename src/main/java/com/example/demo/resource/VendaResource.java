@@ -27,6 +27,7 @@ public class VendaResource {
 	@Autowired
 	private VendaService service;
 	
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<VendaDTO> findById(@PathVariable Integer id){
 		Venda obj = service.findById(id);
@@ -46,6 +47,7 @@ public class VendaResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
+	
 	
 
 }

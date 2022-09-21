@@ -2,14 +2,15 @@ package com.example.demo.domain;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
+
 
 import com.example.demo.domain.dto.VendaDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -27,9 +28,8 @@ public class Venda implements Serializable{
 	
 	protected Integer clienteId;
 	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@OneToOne
-	protected Carrinho carrinho;
+	@ManyToMany
+	private List<Produto> produto = new ArrayList<>();
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime data = LocalDateTime.now();
@@ -47,15 +47,15 @@ public class Venda implements Serializable{
 		this.id = obj.getId();
 		this.valor = obj.getValor();
 		this.clienteId = obj.getClienteId();
-		this.carrinho = obj.getCarrinho();
+		this.produto = obj.getProduto();
 	}
 
-	public Venda(Integer id, Float valor, Integer clienteId, Carrinho carrinho) {
+	public Venda(Integer id, Float valor, Integer clienteId, List<Produto> produto) {
 		super();
 		this.id = id;
 		this.valor = valor;
 		this.clienteId = clienteId;
-		this.carrinho = carrinho;
+		this.produto = produto;
 	}
 
 	public Integer getId() {
@@ -82,13 +82,15 @@ public class Venda implements Serializable{
 		this.clienteId = clienteId;
 	}
 
-	public Carrinho getCarrinho() {
-		return carrinho;
+	public List<Produto> getProduto() {
+		return produto;
 	}
 
-	public void setCarrinho(Carrinho carrinho) {
-		this.carrinho = carrinho;
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
+	
+	
 	
 	
 	
