@@ -17,9 +17,10 @@ public class Endereco implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private String rua;
-	private String cidade;
-	private String estado;
+	private String logradouro;
+	private String localidade;
+	private String uf;
+	private String bairro;
 	private String cep;
 	private Integer numero;
 	private String complemento;
@@ -28,18 +29,23 @@ public class Endereco implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
-	public Endereco(Integer id, String rua, String cidade, String estado, String cep, Integer numero,
-			String complemento) {
+	public Endereco(Integer id, String logradouro, String localidade, String uf, String bairro, String cep,
+			Integer numero, String complemento) {
 		super();
 		this.id = id;
-		this.rua = rua;
-		this.cidade = cidade;
-		this.estado = estado;
+		this.logradouro = logradouro;
+		this.localidade = localidade;
+		this.uf = uf;
+		this.bairro = bairro;
 		this.cep = cep;
 		this.numero = numero;
 		this.complemento = complemento;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -49,28 +55,36 @@ public class Endereco implements Serializable {
 		this.id = id;
 	}
 
-	public String getRua() {
-		return rua;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
-	public String getCidade() {
-		return cidade;
+	public String getLocalidade() {
+		return localidade;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
+	public void setLocalidade(String localidade) {
+		this.localidade = localidade;
 	}
 
-	public String getEstado() {
-		return estado;
+	public String getUf() {
+		return uf;
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
+	public String getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
 	}
 
 	public String getCep() {
@@ -96,6 +110,7 @@ public class Endereco implements Serializable {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
+	
 	
 	
 	
