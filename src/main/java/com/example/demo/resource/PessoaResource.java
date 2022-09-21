@@ -50,7 +50,7 @@ public class PessoaResource {
 		return ResponseEntity.ok().body(resgatarUsuario(listDTO));
 	}
 	
-	@PostMapping
+	@PostMapping(value="/cadastro")
 	public ResponseEntity<PessoaDTO> create(@Valid @RequestBody PessoaDTO objDTO){
 		Pessoa newObj = service.create(objDTO);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{îd}").buildAndExpand(newObj.getId()).toUri(); 
