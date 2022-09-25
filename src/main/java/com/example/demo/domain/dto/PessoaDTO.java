@@ -35,7 +35,9 @@ public class PessoaDTO implements Serializable {
 	protected List<Endereco> endereco = new ArrayList<>();
 	
 	protected Set<Integer> perfis = new HashSet<>();
-
+	
+	private String imagemUrl;
+	
 	public PessoaDTO() {
 		super();
 		addPerfil(Perfil.CLIENTE);
@@ -51,6 +53,8 @@ public class PessoaDTO implements Serializable {
 		this.senha = obj.getSenha();
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.endereco = obj.getEndereco();
+		this.data = obj.getData();
+		this.imagemUrl = obj.getImagemUrl();
 	}
 
 	public Integer getId() {
@@ -108,6 +112,27 @@ public class PessoaDTO implements Serializable {
 	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
 	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
+
+	public void setPerfis(Set<Integer> perfis) {
+		this.perfis = perfis;
+	}
+
+	public String getImagemUrl() {
+		return imagemUrl;
+	}
+
+	public void setImagemUrl(String imagemUrl) {
+		this.imagemUrl = imagemUrl;
+	}
+	
 	
 	
 	

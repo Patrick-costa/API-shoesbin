@@ -36,4 +36,11 @@ public class PessoaService {
 		return pessoaRepository.save(newObj);
 	}
 	
+	public Pessoa update(Integer id, PessoaDTO objDTO) {
+		objDTO.setId(id);
+		Pessoa oldObj = findById(id);
+		oldObj = new Pessoa(objDTO);
+		return pessoaRepository.save(oldObj);
+	}
+	
 }

@@ -45,6 +45,8 @@ public class Pessoa implements Serializable {
 	
 	protected String senha;
 	
+	private String imagemUrl;
+	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data = LocalDate.now();
 	
@@ -69,6 +71,8 @@ public class Pessoa implements Serializable {
 		this.senha = obj.getSenha();
 		this.perfis = obj.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
 		this.endereco = obj.getEndereco();
+		this.data = obj.getData();
+		this.imagemUrl = obj.getImagemUrl();
 	}
 	
 
@@ -135,6 +139,22 @@ public class Pessoa implements Serializable {
 
 	public void setEndereco(List<Endereco> endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getImagemUrl() {
+		return imagemUrl;
+	}
+
+	public void setImagemUrl(String imagemUrl) {
+		this.imagemUrl = imagemUrl;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
 	
 	
