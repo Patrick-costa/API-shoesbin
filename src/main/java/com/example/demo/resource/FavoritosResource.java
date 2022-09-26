@@ -42,6 +42,13 @@ public class FavoritosResource {
 		return ResponseEntity.ok().body(new FavoritosDTO(obj));
 	}
 	
+	@GetMapping(value="/produto/{id}")
+	public ResponseEntity<List<FavoritosDTO>> findByProdutoId(@PathVariable Integer id){
+		List<Favoritos> obj = service.findByIdProduto(id);
+		List<FavoritosDTO> listDTO = obj.stream().map(x -> new FavoritosDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
+	}
+	
 	@PostMapping
 	public ResponseEntity<FavoritosDTO> create(@Valid @RequestBody FavoritosDTO objDTO){
 		Favoritos newObj = service.create(objDTO);

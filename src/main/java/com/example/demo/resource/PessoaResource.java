@@ -61,6 +61,8 @@ public class PessoaResource {
 	
 	@PutMapping(value = "/{id}")
 	public ResponseEntity<PessoaDTO> update(@PathVariable Integer id, @Valid @RequestBody PessoaDTO objDTO){
+		System.out.println(objDTO.getNome());
+		System.out.println("###############################");
 		Pessoa obj = service.update(id, objDTO);
 		return ResponseEntity.ok().body(new PessoaDTO(obj));
 	}

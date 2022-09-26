@@ -3,12 +3,15 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Pessoa;
 import com.example.demo.domain.dto.PessoaDTO;
+import com.example.demo.enums.Perfil;
 import com.example.demo.repository.PessoaRepository;
 import com.example.demo.service.exceptions.ObjectnotFoundException;
 
@@ -36,8 +39,9 @@ public class PessoaService {
 		return pessoaRepository.save(newObj);
 	}
 	
-	public Pessoa update(Integer id, PessoaDTO objDTO) {
+	public Pessoa update(Integer id, @Valid PessoaDTO objDTO) {
 		objDTO.setId(id);
+		objDTO.addPerfil(Perfil.CLIENTE);
 		Pessoa oldObj = findById(id);
 		oldObj = new Pessoa(objDTO);
 		return pessoaRepository.save(oldObj);

@@ -26,6 +26,11 @@ public class FavoritosService {
 		return obj.orElseThrow(() -> new ObjectnotFoundException("Objeto não encontrado! id: "+ id ));
 	}
 	
+	public List<Favoritos> findByIdProduto(Integer id) {
+		List<Favoritos> list = repository.findAll();
+		return list.stream().filter((x) -> x.getIdUsuario().equals(userDet.getIdUser()) && x.getProduto().getId().equals(id)).collect(Collectors.toList());
+	}
+	
 	public List<Favoritos> findAll() {
 		List<Favoritos> list = repository.findAll();
 		return list.stream().filter((x) -> x.getIdUsuario().equals(userDet.getIdUser())).collect(Collectors.toList());
