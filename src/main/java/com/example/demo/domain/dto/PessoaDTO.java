@@ -36,6 +36,9 @@ public class PessoaDTO implements Serializable {
 	
 	protected Set<Integer> perfis = new HashSet<>();
 	
+	@NotNull(message = "O Campo TELEFONE é requerido")
+	private String telefone;
+	
 	private String imagemUrl;
 	
 	public PessoaDTO() {
@@ -55,6 +58,7 @@ public class PessoaDTO implements Serializable {
 		this.endereco = obj.getEndereco();
 		this.data = obj.getData();
 		this.imagemUrl = obj.getImagemUrl();
+		this.telefone = obj.getTelefone();
 	}
 
 	public Integer getId() {
@@ -132,6 +136,15 @@ public class PessoaDTO implements Serializable {
 	public void setImagemUrl(String imagemUrl) {
 		this.imagemUrl = imagemUrl;
 	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
 	
 	
 	

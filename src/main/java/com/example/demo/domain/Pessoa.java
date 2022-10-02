@@ -47,6 +47,8 @@ public class Pessoa implements Serializable {
 	
 	private String imagemUrl;
 	
+	private String telefone;
+	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data = LocalDate.now();
 	
@@ -156,6 +158,15 @@ public class Pessoa implements Serializable {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	
 	
 	
 	
