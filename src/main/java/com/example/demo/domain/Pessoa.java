@@ -75,6 +75,7 @@ public class Pessoa implements Serializable {
 		this.endereco = obj.getEndereco();
 		this.data = obj.getData();
 		this.imagemUrl = obj.getImagemUrl();
+		this.telefone = obj.getTelefone();
 	}
 	
 
